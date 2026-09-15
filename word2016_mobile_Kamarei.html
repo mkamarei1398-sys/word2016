@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+
+<title>نرم افزار آموزشی Word 2016</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#173b6c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="آموزش Word 2016">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1f2937;
+}
+
+button {
+    font-family: Tahoma, Arial, sans-serif;
+    cursor: pointer;
+}
+
+.header {
+    background: linear-gradient(135deg, #173b6c, #2563eb);
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0 0 10px;
+    font-size: 28px;
+}
+
+.header p {
+    margin: 0;
+    color: #dbeafe;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.info {
+    line-height: 2.2;
+    font-size: 17px;
+}
+
+.title {
+    color: #173b6c;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 13px 25px;
+    margin: 6px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.blue {
+    background: #2563eb;
+}
+
+.green {
+    background: #16a34a;
+}
+
+.orange {
+    background: #f59e0b;
+}
+
+.gray {
+    background: #64748b;
+}
+
+.red {
+    background: #dc2626;
+}
+
+.lesson {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.lesson-number {
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.lesson-title {
+    flex: 1;
+    font-weight: bold;
+}
+
+.lesson-content {
+    font-size: 17px;
+    line-height: 2;
+    background: #eff6ff;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.question {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.option {
+    display: block;
+    padding: 10px;
+    margin: 7px 0;
+    background: white;
+    border-radius: 8px;
+}
+
+.option:hover {
+    background: #eff6ff;
+}
+
+.feedback {
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.score {
+    font-size: 30px;
+    font-weight: bold;
+    color: #173b6c;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+}
+
+@media(max-width:600px) {
+
+    .header h1 {
+        font-size: 21px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .lesson {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .lesson-number {
+        margin: 0 auto 10px;
+        width: 45px;
+    }
+
+    .btn {
+        width: 90%;
+        margin: 6px auto;
+    }
+
+    .info {
+        font-size: 15px;
+    }
+}
+
+/* Mobile / touch improvements */
+html, body {
+    width: 100%;
+    min-height: 100%;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+button, input, label {
+    -webkit-tap-highlight-color: transparent;
+}
+button, .option {
+    touch-action: manipulation;
+}
+.option {
+    cursor: pointer;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+}
+@media(max-width:600px) {
+    .header {
+        padding: 24px 14px;
+    }
+    .header h1 {
+        font-size: 20px;
+        line-height: 1.6;
+    }
+    .header p {
+        font-size: 14px;
+    }
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+    .card {
+        width: 100%;
+        padding: 16px;
+        border-radius: 14px;
+    }
+    .title {
+        font-size: 20px;
+        line-height: 1.7;
+    }
+    .lesson-content, .question {
+        padding: 16px;
+        font-size: 16px;
+        line-height: 2;
+    }
+    .btn {
+        width: 100%;
+        min-height: 48px;
+        padding: 12px 14px;
+        margin: 5px 0;
+        font-size: 15px;
+    }
+    .lesson {
+        padding: 14px;
+    }
+    .lesson-title {
+        margin-bottom: 8px;
+        line-height: 1.8;
+    }
+    .info {
+        font-size: 15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script>
+
+const lessons = [
+
+{
+title: "آشنایی با انواع واژه‌پرداز",
+text:
+"واژه‌پرداز نرم‌افزاری است که برای ایجاد، ویرایش، قالب‌بندی و چاپ اسناد متنی استفاده می‌شود. Microsoft Word یکی از معروف‌ترین نرم‌افزارهای واژه‌پرداز است.",
+question: "کدام گزینه یک نرم‌افزار واژه‌پرداز است؟",
+options: ["Paint", "Word", "Calculator", "PowerPoint"],
+answer: 1
+},
+
+{
+title: "شروع کار در محیط Word 2016",
+text:
+"پس از اجرای Microsoft Word 2016، محیط اصلی نرم‌افزار نمایش داده می‌شود. در محیط Word قسمت‌های مختلفی وجود دارد که هر کدام وظیفه خاصی دارند.",
+question: "برای شروع کار با Word ابتدا چه چیزی را باید بشناسیم؟",
+options: ["محیط نرم‌افزار", "ماشین حساب", "مرورگر اینترنت", "Paint"],
+answer: 0
+},
+
+{
+title: "نوار عنوان (Title Bar)",
+text:
+"نوار عنوان در قسمت بالای پنجره Word قرار دارد. در این قسمت نام سند و نام نرم‌افزار نمایش داده می‌شود.",
+question: "نوار عنوان معمولاً در کدام قسمت پنجره قرار دارد؟",
+options: ["پایین پنجره", "وسط صفحه", "بالای پنجره", "سمت چپ صفحه"],
+answer: 2
+},
+
+{
+title: "نوار ابزار دسترسی سریع (Quick Access)",
+text:
+"نوار ابزار دسترسی سریع برای دسترسی سریع‌تر به برخی فرمان‌های پرکاربرد استفاده می‌شود. این نوار معمولاً در قسمت بالایی محیط Word قرار دارد.",
+question: "Quick Access Toolbar چه کاربردی دارد؟",
+options: [
+"دسترسی سریع به فرمان‌های پرکاربرد",
+"نوشتن متن",
+"نمایش ساعت",
+"بازی کردن"
+],
+answer: 0
+},
+
+{
+title: "نوار Ribbon",
+text:
+"Ribbon ناحیه‌ای از محیط Word است که ابزارها و فرمان‌های مختلف را در اختیار کاربر قرار می‌دهد. ابزارها در زبانه‌های مختلف مانند Home و Insert سازمان‌دهی شده‌اند.",
+question: "Ribbon چه چیزی را در اختیار کاربر قرار می‌دهد؟",
+options: [
+"ابزارها و فرمان‌های مختلف",
+"فقط ساعت",
+"فقط نام فایل",
+"فقط شماره صفحه"
+],
+answer: 0
+},
+
+{
+title: "ناحیه تایپ و مکان‌نما",
+text:
+"ناحیه تایپ قسمتی از صفحه است که متن خود را در آن وارد می‌کنیم. مکان‌نما یا Cursor محل قرار گرفتن متن هنگام تایپ را مشخص می‌کند.",
+question: "متن در کدام قسمت Word وارد می‌شود؟",
+options: [
+"Title Bar",
+"Ribbon",
+"ناحیه تایپ",
+"Status Bar"
+],
+answer: 2
+},
+
+{
+title: "کلیدهای صفحه‌کلید و کاربرد آنها",
+text:
+"برخی کلیدهای صفحه‌کلید کاربردهای مهمی در هنگام تایپ دارند. Space برای ایجاد فاصله، Enter برای رفتن به خط بعد و Backspace برای حذف کاراکتر قبل از مکان‌نما استفاده می‌شود.",
+question: "کلید Space چه کاری انجام می‌دهد؟",
+options: [
+"حذف متن",
+"ایجاد فاصله",
+"رفتن به خط بعد",
+"ذخیره فایل"
+],
+answer: 1
+},
+
+{
+title: "نوار وضعیت (Status Bar)",
+text:
+"نوار وضعیت در قسمت پایین پنجره Word قرار دارد. این نوار اطلاعاتی درباره وضعیت سند را نمایش می‌دهد؛ مانند شماره صفحه و تعداد کلمات.",
+question: "نوار وضعیت در کدام قسمت پنجره Word قرار دارد؟",
+options: [
+"بالای پنجره",
+"وسط پنجره",
+"پایین پنجره",
+"داخل Ribbon"
+],
+answer: 2
+}
+
+];
+
+const quiz = [
+
+["Word در کدام دسته نرم‌افزارها قرار می‌گیرد؟",
+["واژه‌پرداز","نقاشی","ماشین حساب","مرورگر"],0],
+
+["Title Bar در کدام قسمت پنجره قرار دارد؟",
+["پایین","بالا","وسط","کنار"],1],
+
+["Quick Access Toolbar چه کاربردی دارد؟",
+["دسترسی سریع به فرمان‌های پرکاربرد","نمایش صفحه‌کلید","چاپ عکس","پخش صدا"],0],
+
+["Ribbon شامل چه چیزی است؟",
+["ابزارها و فرمان‌ها","فقط ساعت","فقط نام فایل","فقط شماره صفحه"],0],
+
+["محل وارد کردن متن کجاست؟",
+["Status Bar","Title Bar","ناحیه تایپ","Ribbon"],2],
+
+["مکان‌نما چه چیزی را مشخص می‌کند؟",
+["محل قرار گرفتن متن هنگام تایپ","نام فایل","شماره صفحه","اندازه پنجره"],0],
+
+["کلید Space چه کاربردی دارد؟",
+["حذف متن","ایجاد فاصله","ذخیره فایل","چاپ"],1],
+
+["کلید Enter معمولاً برای چه کاری استفاده می‌شود؟",
+["رفتن به خط بعد","حذف کاراکتر","ذخیره","باز کردن فایل"],0],
+
+["Status Bar در کدام قسمت قرار دارد؟",
+["بالا","وسط","پایین","سمت راست"],2],
+
+["کدام گزینه یکی از زبانه‌های Word است؟",
+["Home","Calculator","Desktop","Windows"],0]
+
+];
+
+let currentLesson = 0;
+let quizIndex = 0;
+let score = 0;
+
+function home() {
+
+document.getElementById("app").innerHTML = `
+
+<div class="header">
+
+<h1>نرم افزار آموزشی فصل 1 کتاب Word 2016</h1>
+
+<p>آموزش تعاملی Word 2016</p>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">مشخصات آموزشی</div>
+
+<div class="info">
+
+<strong>هنرآموز:</strong> ملیحه کمرئی<br>
+
+<strong>کد پرسنلی:</strong> 10458938<br>
+
+<strong>هنرستان:</strong> فاطمه زهرا (س)<br>
+
+<strong>سال تحصیلی:</strong> 1405-1404
+
+</div>
+
+</div>
+
+<div class="card center">
+
+<div class="title">به نرم افزار آموزشی خوش آمدید 🌷</div>
+
+<p>
+در این نرم افزار مطالب فصل اول Word 2016،
+تمرین و آزمون را دنبال کنید.
+</p>
+
+<button class="btn blue" onclick="showLessons()">
+📚 شروع آموزش
+</button>
+
+<button class="btn orange" onclick="startQuiz()">
+🏆 آزمون فصل
+</button>
+
+</div>
+
+</div>
+
+<div class="footer">
+آموزش Word 2016 - هنرستان فاطمه زهرا (س)
+</div>
+`;
+
+}
+
+function showLessons() {
+
+let html = `
+
+<div class="header">
+
+<h1>فهرست مطالب فصل اول</h1>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">مطالب آموزشی</div>
+`;
+
+lessons.forEach((lesson,index)=>{
+
+html += `
+
+<div class="lesson">
+
+<div class="lesson-number">${index+1}</div>
+
+<div class="lesson-title">
+${lesson.title}
+</div>
+
+<button class="btn blue"
+onclick="showLesson(${index})">
+شروع درس
+</button>
+
+</div>
+
+`;
+
+});
+
+html += `
+
+<div class="center">
+
+<button class="btn orange"
+onclick="startQuiz()">
+🏆 آزمون فصل
+</button>
+
+<button class="btn gray"
+onclick="home()">
+⌂ صفحه اصلی
+</button>
+
+</div>
+
+</div>
+</div>
+`;
+
+document.getElementById("app").innerHTML = html;
+
+}
+
+function showLesson(index) {
+
+currentLesson = index;
+
+let lesson = lessons[index];
+
+document.getElementById("app").innerHTML = `
+
+<div class="header">
+
+<h1>درس ${index+1} از ${lessons.length}</h1>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">
+${lesson.title}
+</div>
+
+<div class="lesson-content">
+${lesson.text}
+</div>
+
+<div class="question">
+
+<strong>🎯 تمرین</strong>
+
+<p>${lesson.question}</p>
+
+`;
+
+lesson.options.forEach((option,i)=>{
+
+document.getElementById("app").innerHTML += "";
+
+});
+
+document.getElementById("app").innerHTML += `
+
+<div id="options"></div>
+
+<div id="feedback" class="feedback"></div>
+
+<button class="btn blue"
+onclick="checkLessonAnswer()">
+بررسی پاسخ
+</button>
+
+</div>
+
+<div class="center">
+
+${index > 0 ?
+`<button class="btn gray"
+onclick="showLesson(${index-1})">
+→ درس قبلی
+</button>` : ""}
+
+${index < lessons.length-1 ?
+`<button class="btn green"
+onclick="showLesson(${index+1})">
+درس بعدی ←
+</button>` :
+`<button class="btn orange"
+onclick="startQuiz()">
+🏆 آزمون نهایی
+</button>`}
+
+<br>
+
+<button class="btn gray"
+onclick="showLessons()">
+📚 فهرست مطالب
+</button>
+
+</div>
+
+</div>
+
+</div>
+`;
+
+let optionsHTML = "";
+
+lesson.options.forEach((option,i)=>{
+
+optionsHTML += `
+
+<label class="option">
+
+<input type="radio"
+name="lessonAnswer"
+value="${i}">
+
+${option}
+
+</label>
+
+`;
+
+});
+
+document.getElementById("options").innerHTML = optionsHTML;
+
+}
+
+function checkLessonAnswer() {
+
+let selected =
+document.querySelector('input[name="lessonAnswer"]:checked');
+
+let feedback =
+document.getElementById("feedback");
+
+if(!selected){
+
+feedback.innerHTML =
+"لطفاً یک گزینه را انتخاب کنید.";
+
+feedback.style.color = "#f59e0b";
+
+return;
+
+}
+
+if(Number(selected.value) === lessons[currentLesson].answer){
+
+feedback.innerHTML =
+"✅ آفرین! پاسخ صحیح است.";
+
+feedback.style.color = "#16a34a";
+
+}else{
+
+feedback.innerHTML =
+"❌ پاسخ اشتباه است. دوباره تلاش کنید.";
+
+feedback.style.color = "#dc2626";
+
+}
+
+}
+
+function startQuiz(){
+
+quizIndex = 0;
+score = 0;
+
+showQuizQuestion();
+
+}
+
+function showQuizQuestion(){
+
+if(quizIndex >= quiz.length){
+
+showResult();
+return;
+
+}
+
+let q = quiz[quizIndex];
+
+let html = `
+
+<div class="header">
+
+<h1>آزمون فصل اول</h1>
+
+<p>سؤال ${quizIndex+1} از ${quiz.length}</p>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">
+${q[0]}
+</div>
+
+<div id="quizOptions"></div>
+
+<div class="center">
+
+<button class="btn blue"
+onclick="submitQuiz()">
+ثبت پاسخ
+</button>
+
+</div>
+
+</div>
+
+</div>
+`;
+
+document.getElementById("app").innerHTML = html;
+
+let options = "";
+
+q[1].forEach((option,i)=>{
+
+options += `
+
+<label class="option">
+
+<input type="radio"
+name="quizAnswer"
+value="${i}">
+
+${option}
+
+</label>
+
+`;
+
+});
+
+document.getElementById("quizOptions").innerHTML = options;
+
+}
+
+function submitQuiz(){
+
+let selected =
+document.querySelector('input[name="quizAnswer"]:checked');
+
+if(!selected){
+
+alert("لطفاً یک گزینه را انتخاب کنید.");
+return;
+
+}
+
+if(Number(selected.value) === quiz[quizIndex][2]){
+
+score++;
+
+}
+
+quizIndex++;
+
+showQuizQuestion();
+
+}
+
+function showResult(){
+
+let percent =
+Math.round((score / quiz.length) * 100);
+
+let message = "";
+
+if(percent >= 80){
+
+message =
+"🎉 عالی بود! عملکرد بسیار خوبی داشتید.";
+
+}else if(percent >= 60){
+
+message =
+"👏 خوب بود! با کمی تمرین بهتر می‌شوید.";
+
+}else{
+
+message =
+"💪 بهتر است مطالب را دوباره مرور کنید.";
+
+}
+
+document.getElementById("app").innerHTML = `
+
+<div class="header">
+
+<h1>نتیجه آزمون</h1>
+
+</div>
+
+<div class="container">
+
+<div class="card center">
+
+<div style="font-size:60px;">
+🏆
+</div>
+
+<div class="score">
+نمره شما: ${score} از ${quiz.length}
+</div>
+
+<h2>
+درصد موفقیت: ${percent}٪
+</h2>
+
+<p>
+${message}
+</p>
+
+<button class="btn blue"
+onclick="startQuiz()">
+🔄 آزمون دوباره
+</button>
+
+<button class="btn green"
+onclick="showLessons()">
+📚 بازگشت به درس‌ها
+</button>
+
+<button class="btn gray"
+onclick="home()">
+⌂ صفحه اصلی
+</button>
+
+</div>
+
+</div>
+`;
+
+}
+
+home();
+
+</script>
+
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+    });
+}
+</script>
+</body>
+</html>
